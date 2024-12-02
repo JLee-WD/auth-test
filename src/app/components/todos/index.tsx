@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Todo from './todo';
 import Button from '../common/button';
+import { useAuth } from '../context/AuthContext';
 
 const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -9,6 +10,7 @@ const TodoList: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
+  const { setAuthToken } = useAuth();
 
   const fetchTodos = async (page: number) => {
     setLoading(true);
@@ -32,8 +34,7 @@ const TodoList: React.FC = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    window.location.href = '/';
+    setAuthToken(null);
   };
 
   useEffect(() => {
