@@ -44,10 +44,9 @@ const TodoList: React.FC = () => {
     <div className="container mx-auto p-6">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold mb-6">Todo List</h1>
-        <Button onClick={handleLogout} buttonText="Logout" classes="px-4 py-2 bg-blue-500 text-white rounded mb-6" type='submit' />
+        <Button onClick={handleLogout} buttonText="Logout" classes="mb-6" type='submit' />
       </div>
       {error && <div className="mb-4 text-red-600 bg-red-100 p-3 rounded">{error}</div>}
-
       <div className="space-y-4">
         {loading ? (
           <div className="text-center">Loading...</div>
@@ -59,13 +58,13 @@ const TodoList: React.FC = () => {
       </div>
 
       <div className="mt-6 flex justify-between items-center">
-        <Button classes='px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50'
+        <Button classes='disabled:opacity-50'
         type='button' onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} buttonText='Previous' disabled={currentPage === 1}
         />
         <span>
           Page {currentPage} of {totalPages}
         </span>
-        <Button classes='px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50' type='button' onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} buttonText='Next' disabled={currentPage === totalPages} />
+        <Button classes='disabled:opacity-50' type='button' onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} buttonText='Next' disabled={currentPage === totalPages} />
       </div>
     </div>
   );

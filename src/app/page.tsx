@@ -14,14 +14,14 @@ export default function Home() {
   }, []);
   
   return (
-    <div>
-    {loading ? (
-      <div className="text-center">Loading...</div>
-    ) : authToken ? (
-      <TodoList />
-    ) : (
-      <Login setAuthToken={setAuthToken} />
-    )}
+    <div className="bg-black">
+      {loading ? (
+        <div className="text-center">Loading...</div>
+      ) : authToken ? (
+        <TodoList />
+      ) : (
+        <Login setAuthToken={setAuthToken} />
+      )}
     </div>
   );
 }

@@ -15,7 +15,7 @@ const Button = ({ onClick, classes, disabled, type, buttonText, isLoading }: Pro
     onClick={onClick || (() => {})}
     type={type}
     disabled={isLoading || disabled}
-    className={`${classes} ${
+    className={`px-4 py-2 bg-blue-500 text-white rounded ${classes} ${
       isLoading ? 'cursor-not-allowed bg-blue-300' : ''
     }`}
   >{isLoading ? 'Loading...' : buttonText}

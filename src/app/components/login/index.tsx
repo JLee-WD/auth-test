@@ -37,9 +37,9 @@ const Login: React.FC<LoginPageProps> = ({ setAuthToken }) => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen">
       <div className="w-full max-w-md bg-white p-6 rounded shadow-md">
-        <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
+        <h1 className="text-2xl font-bold text-center mb-6 text-gray-700">Login</h1>
         {error && (
           <div className="mb-4 text-red-600 bg-red-100 p-3 rounded">
             {error}
@@ -72,7 +72,7 @@ const Login: React.FC<LoginPageProps> = ({ setAuthToken }) => {
               required
             />
           </div>
-          <Button type="submit" classes="w-full py-2 px-4 text-white bg-blue-500 rounded hover:bg-blue-600 focus:ring-2 focus:ring-blue-400" buttonText={isLoading ? 'Logging in...' : 'Login'}isLoading={isLoading} />
+          <Button type="submit" classes="w-full hover:bg-blue-600 focus:ring-2 focus:ring-blue-400" buttonText={isLoading ? 'Logging in...' : 'Login'}isLoading={isLoading} />
         </form>
       </div>
     </div>

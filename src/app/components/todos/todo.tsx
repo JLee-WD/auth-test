@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface Todo {
+type Todo = {
   todo: string;
   id: number;
   completed: boolean;
@@ -20,7 +20,7 @@ const Todo = ({todo}: Props) => {
         className="mr-4"
         disabled
       />
-      <span className={`text-lg ${todo.completed ? 'line-through text-gray-500' : ''}`}>
+      <span className={`text-lg text-gray-500 ${todo.completed ? 'line-through' : ''}`}>
         {todo.todo}
       </span>
     </div>
