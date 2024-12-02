@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react";
+import TodoList from "./components/todos";
+import Login from "./components/login";
 
 export default function Home() {
   const [authToken, setAuthToken] = useState<string | null>(null);
@@ -16,9 +18,9 @@ export default function Home() {
     {loading ? (
       <div className="text-center">Loading...</div>
     ) : authToken ? (
-      <div>todo list</div>
+      <TodoList />
     ) : (
-      <div>login</div>
+      <Login setAuthToken={setAuthToken} />
     )}
     </div>
   );
