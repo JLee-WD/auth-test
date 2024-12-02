@@ -1,11 +1,12 @@
 # Requirements
 
-- Uses API https://dummyjson.com/docs/
+- Uses API `https://dummyjson.com/`
 - App has login page which allows user to authenticate
 - Once logged in, users can view 10 to-do list items at a time
 - User can log out
 - Login state persisted when closing app
 - Includes tests & error handling
+- Use any user to login from `https://dummyjson.com/users`, e.g. username: noahh, password: noahhpass
 
 ## Getting Started
 
