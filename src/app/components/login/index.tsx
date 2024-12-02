@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import axios from 'axios';
+import Button from '../common/button';
 
 interface LoginPageProps {
   setAuthToken: (token: string) => void;
@@ -71,9 +72,7 @@ const Login: React.FC<LoginPageProps> = ({ setAuthToken }) => {
               required
             />
           </div>
-          <button type="submit" className="w-full py-2 px-4 text-white bg-blue-500 rounded hover:bg-blue-600 focus:ring-2 focus:ring-blue-400">
-            {isLoading ? 'Logging in...' : 'Login'}
-          </button>
+          <Button type="submit" classes="w-full py-2 px-4 text-white bg-blue-500 rounded hover:bg-blue-600 focus:ring-2 focus:ring-blue-400" buttonText={isLoading ? 'Logging in...' : 'Login'}isLoading={isLoading} />
         </form>
       </div>
     </div>
