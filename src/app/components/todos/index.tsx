@@ -26,8 +26,11 @@ const TodoList: React.FC = () => {
       setTodos(response.data.todos);
       setTotalPages(Math.ceil(response.data.total / 10));
     } catch (err) {
-      console.error(err);
-      setError('Failed to fetch todos.');
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.message || 'Error: Failed to fetch todos. Please refresh or try again.');
+      } else {
+        setError('Error: Failed to fetch todos. Please refresh or try again.');
+      }
     } finally {
       setLoading(false);
     }
