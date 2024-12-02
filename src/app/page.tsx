@@ -1,27 +1,12 @@
-"use client"
+"use client";
+import { AuthProvider } from "./components/context/AuthContext";
+import Home from "./components";
 
-import { useEffect, useState } from "react";
-import TodoList from "./components/todos";
-import Login from "./components/login";
-
-export default function Home() {
-  const [authToken, setAuthToken] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    setAuthToken(localStorage.getItem('authToken'));
-    setLoading(false);
-  }, []);
+export default function App() {
   
   return (
-    <div className="bg-black">
-      {loading ? (
-        <div className="text-center">Loading...</div>
-      ) : authToken ? (
-        <TodoList />
-      ) : (
-        <Login setAuthToken={setAuthToken} />
-      )}
-    </div>
+    <AuthProvider>
+      <Home />
+    </AuthProvider>
   );
 }

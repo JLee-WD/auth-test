@@ -1,16 +1,15 @@
 import React, { useState, FormEvent } from 'react';
 import axios from 'axios';
 import Button from '../common/button';
+import { useAuth } from '../context/AuthContext';
 
-interface LoginPageProps {
-  setAuthToken: (token: string) => void;
-}
-
-const Login: React.FC<LoginPageProps> = ({ setAuthToken }) => {
+const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const { setAuthToken } = useAuth();
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
@@ -27,7 +26,7 @@ const Login: React.FC<LoginPageProps> = ({ setAuthToken }) => {
       setAuthToken(token);
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
-        setError(err.response?.data?.message || 'Invalid credentials.');
+        setError(err.response?.data?.message || 'Invalid credentials, please try again.');
       } else {
         setError('Error occurred. Please try again.');
       }
@@ -55,7 +54,8 @@ const Login: React.FC<LoginPageProps> = ({ setAuthToken }) => {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full mt-1 p-2 border rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className="w-full mt-1 p-2 border rounded-md text-gray-500 focus:ring-blue-500 focus:border-blue-500"
+              placeholder='Enter your username'
               required
             />
           </div>
@@ -68,7 +68,8 @@ const Login: React.FC<LoginPageProps> = ({ setAuthToken }) => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full mt-1 p-2 border rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className="w-full mt-1 p-2 border rounded-md  text-gray-500 focus:ring-blue-500 focus:border-blue-500"
+              placeholder='Enter your password'
               required
             />
           </div>
