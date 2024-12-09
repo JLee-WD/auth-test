@@ -5,6 +5,8 @@ import Button from '../common/button';
 import { useAuth } from '../context/AuthContext';
 
 const TodoList: React.FC = () => {
+  // state variables and functions for todo list
+  // loading, error, current page, total pages
   const [todos, setTodos] = useState<Todo[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -24,8 +26,11 @@ const TodoList: React.FC = () => {
         },
       });
       setTodos(response.data.todos);
+      // sets total pages based on total number of todos, rounded up to the nearest integer
       setTotalPages(Math.ceil(response.data.total / 10));
     } catch (err) {
+      // if error is AxiosError, display error message from server
+      // if error is not AxiosError, display generic error message
       if (axios.isAxiosError(err)) {
         setError(err.response?.data?.message || 'Error: Failed to fetch todos. Please refresh or try again.');
       } else {
@@ -40,6 +45,7 @@ const TodoList: React.FC = () => {
     setAuthToken(null);
   };
 
+  // fetch todos when current page changes
   useEffect(() => {
     fetchTodos(currentPage);
   }, [currentPage]);

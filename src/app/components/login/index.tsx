@@ -3,6 +3,7 @@ import axios from 'axios';
 import Button from '../common/button';
 import { useAuth } from '../context/AuthContext';
 
+// Type functional react component
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -12,9 +13,12 @@ const Login: React.FC = () => {
   const { setAuthToken } = useAuth();
 
   const handleLogin = async (e: FormEvent) => {
+    // prevent page refresh, clear errors and set loading
     e.preventDefault();
     setError(null);
     setIsLoading(true);
+
+    // send login request with expiry, retrieve token and store in local storage
     try {
       const response = await axios.post('https://dummyjson.com/auth/login', {
         username,
@@ -25,6 +29,10 @@ const Login: React.FC = () => {
       localStorage.setItem('authToken', token);
       setAuthToken(token);
     } catch (err: unknown) {
+      // handle errors and set error message to display to user
+      // if error is AxiosError, display error message from server
+      // if error is not AxiosError, display generic error message
+      // finally, set loading to false
       if (axios.isAxiosError(err)) {
         setError(err.response?.data?.message || 'Invalid credentials, please try again.');
       } else {
